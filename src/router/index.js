@@ -116,6 +116,20 @@ const router = new Router({
             },
           ],
         },
+        {
+          path: "/sys",
+          name: "system-admin",
+          component: { render: (h) => h("router-view") },
+          meta: { icon: "audit", title: "系统管理", authority: ["admin"] },
+          children: [
+            {
+              path: "/sys/user",
+              name: "user-info",
+              meta: { title: "用户管理" },
+              component: () => import("../views/Sys/UserAdmin"),
+            },
+          ],
+        },
       ],
     },
     {

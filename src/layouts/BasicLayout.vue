@@ -32,7 +32,7 @@
       </a-layout>
     </a-layout>
 
-    <Authorized :authority="['admin']">
+    <Authorized :authority="['user']">
       <SettingDrawer />
     </Authorized>
   </div>

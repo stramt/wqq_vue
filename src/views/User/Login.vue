@@ -15,7 +15,7 @@
       >
         <a-input
           v-decorator="[
-            'userName',
+            'username',
             {
               rules: [
                 { required: true, message: 'Please input your username!' },
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import router from "../../router";
+import { notification } from "ant-design-vue";
 export default {
   data() {
     this.form = this.$form.createForm(this);
@@ -74,6 +76,11 @@ export default {
       },
     };
   },
+  computed: {
+    login() {
+      return this.$store.form.login;
+    },
+  },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
@@ -82,7 +89,23 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
+          console.log(2222);
+          this.$request({
+            url: "/api/login",
+            method: "get",
+            params: { ...values },
+          }).then((res) => {
+            console.log(res.data);
+            if (res.data === "success") {
+              router.push("/dashboard/analysis");
+            } else {
+              notification.error({
+                // eslint-disable-next-line no-unused-vars
+                message: "登录失败",
+                description: res.data,
+              });
+            }
+          });
         }
       });
     },

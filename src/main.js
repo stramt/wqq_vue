@@ -11,6 +11,9 @@ import {
   Menu,
   Form,
   Input,
+  Table,
+  Tag,
+  Divider,
 } from "ant-design-vue";
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
@@ -35,6 +38,9 @@ Vue.use(Auth);
 Vue.use(Request);
 Vue.use(Form);
 Vue.use(Input);
+Vue.use(Table);
+Vue.use(Tag);
+Vue.use(Divider);
 new Vue({
   router,
   store,
